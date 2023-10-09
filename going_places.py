@@ -25,7 +25,7 @@ def getphotos(APIKEY, placeid, coords):
 				photoref = photo['photo_reference']
 				url = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth={}&photoreference={}&sensor=true&key={}'.format(maxwidth, photoref, APIKEY)
 				wget.download(url, './results/{}/{}_{}.jpeg'.format(name, name, n))
-				print('{} of {} photos downloaded........'.format(n,photocounter), end='\r')
+				print('\n {} of {} photos downloaded........'.format(n,photocounter), end='\r')
 				n += 1
 				
 
