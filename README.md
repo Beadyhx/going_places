@@ -7,3 +7,6 @@ Results folder must be deleted before each run.
 ```bash
 pip install wget
 ```
+
+# Setup
+Add your API key to config.py
