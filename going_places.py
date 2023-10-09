@@ -13,6 +13,9 @@ def getphotos(APIKEY, placeid, coords):
 	for result, resultvalues in photosjson['result'].items():
 		if result == 'name':
 			name = resultvalues
+			forbidden = ['<','>',':','"','/','\\','|','&','*']
+			for symbol in forbidden:
+				name = name.replace(symbol, '')
 		if result == 'photos':
 			os.mkdir('./results/{}'.format(name))
 			n = 1
