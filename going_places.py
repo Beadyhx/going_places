@@ -36,6 +36,9 @@ def getplaces(APIKEY, respjson, coords):
 	try:
 		if respjson['status'] == 'ZERO_RESULTS':
 			print('ZERO_RESULTS')
+		elif respjson['status'] == 'REQUEST_DENIED':
+			print('There is some error with your API key:')
+			print(respjson['error_message'])
 		elif respjson['status'] == 'INVALID_REQUEST':
 			print('Invalid request, check your coordinates, it must be in google format, like 12.12345678, 12.87654321')
 		else:
