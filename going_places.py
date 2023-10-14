@@ -17,7 +17,7 @@ def getphotos(APIKEY, placeid, coords):
 			for symbol in forbidden:
 				name = name.replace(symbol, '')
 		if result == 'photos':
-			os.mkdir('./results/{}'.format(name))
+			os.mkdir('./{}/{}'.format(coords,name))
 			n = 1
 			photocounter = 0
 			for photo in resultvalues:
@@ -27,10 +27,10 @@ def getphotos(APIKEY, placeid, coords):
 				maxwidth = photo['width']
 				photoref = photo['photo_reference']
 				url = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth={}&photoreference={}&sensor=true&key={}'.format(maxwidth, photoref, APIKEY)
-				wget.download(url, './results/{}/{}_{}.jpeg'.format(name, name, n))
+				wget.download(url, './{}/{}/{}_{}.jpeg'.format(coords, name, name, n))
 				print('\n {} of {} photos downloaded........'.format(n,photocounter), end='\r')
 				n += 1
-				
+
 
 def getplaces(APIKEY, respjson, coords):
 	try:
@@ -57,7 +57,7 @@ def getplaces(APIKEY, respjson, coords):
 
 
 def getjson(APIKEY, coords, radius):
-	os.mkdir('./results')
+	os.mkdir('./{}'.format(coords))
 	url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={}&radius={}&fields=photo&key={}'.format(coords, radius, APIKEY)
 	response = requests.get(url)
 	respjson = json.loads(response.text)
